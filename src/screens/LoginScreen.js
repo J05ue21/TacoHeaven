@@ -19,3 +19,46 @@ export default function LoginScreen({ navigation }) {
       Alert.alert('Error', 'Usuario o contraseña incorrectos');
     }
   };
+
+return (
+    <View style={styles.container}>
+      <Text style={styles.title}>TacoHeaven</Text>
+      <TextInput 
+        placeholder="Usuario" 
+        onChangeText={setUser} 
+        style={styles.input} 
+      />
+      <TextInput 
+        placeholder="Contraseña" 
+        secureTextEntry 
+        onChangeText={setPassword} 
+        style={styles.input} 
+      />
+      <Button title="Entrar" onPress={handleLogin} color="#D32F2F" />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: { 
+    flex: 1,
+    justifyContent: 'center',
+    padding: 20,
+    backgroundColor: '#FFFBEB' 
+},
+  title: { 
+    fontSize: 32,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 40,
+    color: '#D32F2F' 
+},
+  input: { 
+    borderWidth: 1,
+    borderColor: '#CCC',
+    padding: 10,
+    marginBottom: 20,
+    borderRadius: 8,
+    backgroundColor: '#FFF' 
+}
+});
