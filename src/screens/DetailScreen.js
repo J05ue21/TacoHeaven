@@ -1,15 +1,33 @@
 import React, { useState } from 'react';
 import { View, Text, Image, Button, StyleSheet } from 'react-native';
 
-export default function DetailScreen({ route, navigation }) {
-  const { producto } = route.params; // se obtiene el producto que el usuario eligió
-  const [cantidad, setCantidad] = useState(1);
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-  const agregarAlCarrito = () => {
+export default function DetailScreen({ route, navigation }) {
+  try {
+    // ver que hay en el carrito
+    const carritoActual = await AsyncStorage.getItem('carrito');
+    let lista = carritoActual ? JSON.parse(carritoActual) : [];
+
+    //los detalles  del platillo elegido, se guardan en nuevoItem
+    const nuevoItem = {
+      id: Date.now(),
+      nombre: producto.nombre,
+      precio: producto.precio,
+      cantidad: cantidad,
+      imagen: producto.imagen
+    };
+    lista.push(nuevoItem);
+
+    // lista actualizada
+    await AsyncStorage.setItem('carrito', JSON.stringify(lista));
     
-    alert(`Agregado: ${cantidad} ${producto.nombre}`);
-    navigation.navigate('Orden', { item: { ...producto, cantidad } });
-  };
+    alert("¡Producto añadido!");
+    navigation.navigate('Orden'); // se salta a la pestaña Carrito
+  } catch (e) {
+    console.error(e);
+  }
+};
 
   //se muestra el detalle del platillo/bebida seleccionado del menu
 
@@ -28,13 +46,36 @@ export default function DetailScreen({ route, navigation }) {
       <Button title="Agregar a la Orden" onPress={agregarAlCarrito} color="#D32F2F" />
     </View>
   );
-}
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, alignItems: 'center', backgroundColor: '#fff' },
-  image: { width: 250, height: 250, borderRadius: 15, marginBottom: 20 },
-  name: { fontSize: 24, fontWeight: 'bold' },
-  price: { fontSize: 20, color: '#D32F2F', marginVertical: 10 },
-  counter: { flexDirection: 'row', alignItems: 'center', marginVertical: 20 },
-  qty: { fontSize: 20, marginHorizontal: 20 }
+  container: { 
+    flex: 1,
+    padding: 20, 
+    alignItems: 'center', 
+    backgroundColor: '#fff' 
+  },
+  image: { 
+    width: 250, 
+    height: 250, 
+    borderRadius: 15, 
+    marginBottom: 20 
+  },
+  name: { 
+    fontSize: 24, 
+    fontWeight: 'bold' 
+  },
+  price: { 
+    fontSize: 20, 
+    color: '#D32F2F', 
+    marginVertical: 10 
+  },
+  counter: { 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    marginVertical: 20 
+  },
+  qty: { 
+    fontSize: 20, 
+    marginHorizontal: 20 
+  }
 });
