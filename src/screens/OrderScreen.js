@@ -45,6 +45,8 @@ export default function OrderScreen() {
       setItems([]); //limpia los datos actuales del carrito
 
       alert("¡Gracias por preferir TacoHeaven!");
+      navigation.navigate('Historial');
+
     }
     catch(error)
     {
@@ -71,7 +73,7 @@ export default function OrderScreen() {
           <Text style={styles.totalAmount}>${calcularTotal().toFixed(2)}</Text>
           <Button 
             title="Confirmar Pedido" 
-            onPress={() => alert("¡Pedido realizado!")} 
+            onPress={finalizarCompra} 
             color="#4CAF50"
             disabled={items.length === 0}
           />
