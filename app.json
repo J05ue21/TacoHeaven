@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "TacoHeaven",
-    "slug": "TacoHeaven",
+    "slug": "tacoheaven-mexicanfood",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -24,6 +24,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ad8775cf-9bcf-4dd1-9732-ac19a8d06ad7"
+      }
+    },
+    "owner": "jo5ueo2"
   }
 }
