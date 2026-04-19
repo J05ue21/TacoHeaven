@@ -3,7 +3,7 @@ import { View, Text, FlatList, StyleSheet, TouchableOpacity, Alert, Platform } f
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useIsFocused } from '@react-navigation/native';
 
-export default function HistoryScreen() {
+export default function HistoryScreen({navigation}) {
   const [historial, setHistorial] = useState([]);
   const isFocused = useIsFocused();
 
@@ -46,7 +46,10 @@ const ejecutarLimpieza = async () => {
   try {
     await AsyncStorage.removeItem('historial');
     setHistorial([]);
-    if (Platform.OS === 'web') alert("Historial eliminado");
+    if (Platform.OS === 'web') {
+        alert("Historial eliminado");
+      }
+      navigation.navigate('Menu', { screen: 'ListaMenu' }); //enviar al usuario al Menu luego de borrar Historial
   } 
   catch (e) 
   {
