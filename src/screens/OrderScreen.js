@@ -32,7 +32,7 @@ export default function OrderScreen() {
       // guarda la compra y fecha 
       const nuevaCompra = {
         id: Date.now().toString(),
-        fecha: new Date().toLocaleDateString,
+        fecha: new Date().toLocaleString(),
         total: items.reduce((acc, item) => acc + (item.precio * item.cantidad), 0),
         productos: items
       };
@@ -49,7 +49,8 @@ export default function OrderScreen() {
     catch(error)
     {
       console.error("Hubo un problema al procesar la compra", error);
-    };
+    }
+  };
 
     return (
       <View style={styles.container}>
@@ -65,7 +66,7 @@ export default function OrderScreen() {
           ListEmptyComponent = {<Text style = {styles.empty}>Tu carrito está vacio</Text>}
           />
 
-          <View styles = {styles.footer}>
+          <View style = {styles.footer}>
             <Text style={styles.totalLabel}>Total a pagar:</Text>
           <Text style={styles.totalAmount}>${calcularTotal().toFixed(2)}</Text>
           <Button 
@@ -78,6 +79,7 @@ export default function OrderScreen() {
         </View>
     );
   }
+
 
   const styles = StyleSheet.create({
     container: { 
@@ -122,4 +124,3 @@ export default function OrderScreen() {
       color: '#999' 
     }
   });
-}
