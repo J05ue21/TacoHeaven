@@ -2,7 +2,8 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons } from '@expo/vector-icons';
+
+import { Ionicons } from '@expo/vector-icons';  //iconos para tab navigator
 
 // incluyendo las pantallas basicas de la app
 import LoginScreen from './src/screens/LoginScreen';
@@ -30,12 +31,7 @@ function MenuStackScreen(){
 //menu tipo tab (pestañas) mostrados tras pasar login
 function MainTabs(){
   return (
-    /*<Tab.Navigator screenOptions={{ headerShown: false}}>
-      <Tab.Screen name="Menu" component={MenuStackScreen} options={{ title: 'Menu' }} />
-      <Tab.Screen name="Orden" component={OrderScreen} options={{ title: 'Mi carrito' }} />
-      <Tab.Screen name="Historial" component={HistoryScreen} options={{ title: 'Historial de Pedidos' }} />
-    </Tab.Navigator>*/
-
+    
     <Tab.Navigator
   screenOptions={({ route }) => ({
     tabBarIcon: ({ focused, color, size }) => {
@@ -74,6 +70,7 @@ function MainTabs(){
     options={{ title: 'Reporte de Compras' }} 
   />
 </Tab.Navigator>
+
   );
 }
 
