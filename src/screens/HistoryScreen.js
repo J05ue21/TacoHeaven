@@ -55,15 +55,20 @@ export default function HistoryScreen() {
       
       <View style={styles.divider} />
       
-      {item.detalles.map((prod, index) => (
+      {item.detalles && Array.isArray(item.detalles) ? (
+      item.detalles.map((prod, index) => (
         <View key={index} style={styles.productoRow}>
           <Text style={styles.productoText}>
             {prod.cantidad}x {prod.nombre}
           </Text>
-          <Text style={styles.subtotalText}>${(prod.precio * prod.cantidad).toFixed(2)}</Text>
+          <Text style={styles.subtotalText}>
+            ${(prod.precio * prod.cantidad).toFixed(2)}
+          </Text>
         </View>
-      ))}
-      
+      ))
+    ) : (
+      <Text style={{ color: '#999', fontStyle: 'italic' }}>Sin detalles disponibles</Text>
+    )}
       <View style={styles.divider} />
       
       <View style={styles.totalRow}>

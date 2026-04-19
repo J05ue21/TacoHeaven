@@ -5,7 +5,7 @@ import { View, Text, FlatList, Button, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useIsFocused } from '@react-navigation/native';
 
-export default function OrderScreen() {
+export default function OrderScreen(navigation) {
     const [items, setItems] = useState([]);
     const isFocused = useIsFocused(); // actualizar al entrar a esta pestaña
 
