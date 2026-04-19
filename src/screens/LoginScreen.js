@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Alert, Image, TouchableOpacity } from 'react-native';
 
 export default function LoginScreen({ navigation }) {
   const [user, setUser] = useState('');
@@ -22,7 +22,14 @@ export default function LoginScreen({ navigation }) {
 
 return (
     <View style={styles.container}>
-      <Text style={styles.title}>TacoHeaven</Text>
+      <View style={styles.logoContainer}>
+        <Image 
+          source={{ uri: 'https://cdn.creativefabrica.com/2021/03/10/Food-Taco-Cloud-Style-Graphics-9428700-2-580x387.png' }} 
+          style={styles.logo} 
+        />
+        <Text style={styles.brandName}>TACO HEAVEN</Text>
+        <Text style={styles.tagline}>El paraíso del sabor</Text>
+      </View>
       <TextInput 
         placeholder="Usuario" 
         onChangeText={setUser} 
@@ -42,23 +49,50 @@ return (
 const styles = StyleSheet.create({
   container: { 
     flex: 1,
+    backgroundColor: '#fff',
     justifyContent: 'center',
-    padding: 20,
-    backgroundColor: '#FFFBEB' 
+    padding: 20, 
 },
-  title: { 
-    fontSize: 32,
-    fontWeight: 'bold',
-    textAlign: 'center',
+
+  logoContainer: {
+    alignItems: 'center',
     marginBottom: 40,
-    color: '#D32F2F' 
-},
+  },
+
+  logo: {
+    width: 160,
+    height: 160,
+    resizeMode: 'contain',
+  },
+  brandName: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#D32F2F', // Rojo institucional
+    marginTop: 10,
+  },
+
+  tagline: {
+    fontSize: 14,
+    color: '#666',
+    fontStyle: 'italic',
+  },
+
   input: { 
     borderWidth: 1,
-    borderColor: '#CCC',
-    padding: 10,
-    marginBottom: 20,
-    borderRadius: 8,
-    backgroundColor: '#FFF' 
-}
+    borderColor: '#ddd',
+    padding: 15,
+    borderRadius: 10,
+    marginBottom: 15, 
+},
+  button: {
+    backgroundColor: '#D32F2F',
+    padding: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 16,
+  }
 });
