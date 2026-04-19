@@ -31,7 +31,6 @@ export default function HistoryScreen() {
         ejecutarLimpieza();
       }
     }
-      //else{ //vista desde el movil
           Alert.alert(
             "Limpiar Reporte",
             mensaje,
@@ -40,9 +39,7 @@ export default function HistoryScreen() {
               { text: "Borrar", style: "destructive", onPress: ejecutarLimpieza}
             ]
           );
-      //}
-    //}
-};
+  };
 
 // funcion especifica para eliminar en ambas plataformas
 const ejecutarLimpieza = async () => {
