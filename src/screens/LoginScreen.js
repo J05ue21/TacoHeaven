@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert, Image, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Alert, Image, TouchableOpacity, Platform} from 'react-native';
 
 export default function LoginScreen({ navigation }) {
   const [user, setUser] = useState('');
@@ -9,14 +9,20 @@ export default function LoginScreen({ navigation }) {
     
     // con variables locales se almacenan las credenciales
     const VALID_USER = 'josue26';
-    const VALID_PASS = 'expoyreact';
+    const VALID_PASS = 'exporeact';
 
     if (user === VALID_USER && password === VALID_PASS) {
       navigation.replace('Main'); // con replace se evita que el usuario "regrese" al login
     } 
     else 
     {
-      Alert.alert('Error', 'Usuario o contraseña incorrectos');
+      const mensajeError = 'Usuario o contraseña incorrectos';
+      if (Platform.OS === 'web') {
+        alert(mensajeError);
+      } 
+      else {
+      Alert.alert('Error', mensajeError);
+      }
     }
   };
 
