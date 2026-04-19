@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image, Button, StyleSheet } from 'react-native';
+import { View, Text, Image, Button, StyleSheet,Platform, Alert} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -27,7 +27,16 @@ export default function DetailScreen({ route, navigation }) {
     // lista actualizada
     await AsyncStorage.setItem('carrito', JSON.stringify(lista));
     
-    alert("¡Producto añadido!");
+    //...........................................................................................
+    const titulo = '✅ ¡Producto añadido!';
+    const mensaje = 'Tu orden se está actualizando...';
+    if (Platform.OS === 'web') {
+      window.alert(`${titulo}\n\n${mensaje}`);
+    } 
+    else {
+    Alert.alert(titulo, mensaje);
+    }
+    //................................................................................
     navigation.navigate('Orden'); // se salta a la pestaña Carrito
   } catch (e) {
     console.error("Hubo un problema al guardar", e);
