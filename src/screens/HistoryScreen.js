@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity, Alert, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useIsFocused } from '@react-navigation/native';
 
@@ -23,22 +23,38 @@ export default function HistoryScreen() {
 
   // si se desea borra el historial
   const borrarHistorial = () => {
-    Alert.alert(
-      "Limpiar Reporte",
-      "¿Estás seguro de que deseas borrar todo el historial de compras?",
-      [
-        { text: "Cancelar", style: "cancel" },
-        { 
-          text: "Borrar", 
-          style: "destructive", 
-          onPress: async () => {
-            await AsyncStorage.removeItem('historial');
-            setHistorial([]);
-          } 
-        }
-      ]
-    );
-  };
+    const mensaje = "¿Estás seguro de que deseas borrar todo el historial de compras?";
+      //Vista WEB
+      if(Platform.OS === 'web')
+      {
+        if(window.confirm(mensaje)){
+        ejecutarLimpieza();
+      }
+      else{ //vista desde el movil
+          Alert.alert(
+            "Limpiar Reporte",
+            mensaje,
+            [
+              { text: "Cancelar", style: "cancel" },
+              { text: "Borrar", style: "destructive", onPress: ejecutarLimpieza}
+            ]
+          );
+      }
+    }
+};
+
+// funcion especifica para eliminar en ambas plataformas
+const ejecutarLimpieza = async () => {
+  try {
+    await AsyncStorage.removeItem('historial');
+    setHistorial([]);
+    if (Platform.OS === 'web') alert("Historial eliminado");
+  } 
+  catch (e) 
+  {
+    console.error("Error al limpiar", e);
+  }
+};
 
   useEffect(() => {
     if (isFocused) {
