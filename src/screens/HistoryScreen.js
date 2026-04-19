@@ -23,20 +23,23 @@ export default function HistoryScreen({navigation}) {
 
   // si se desea borra el historial
   const borrarHistorial = () => {
-    const mensaje = "¿Estás seguro de que deseas borrar todo el historial de compras?";
+
+    const titulo = '⚠️ ¿Borrar Historial?';
+    const mensaje = "Esta acción quitará todos tus registros de compra de forma permanente";
       //Vista WEB
       if(Platform.OS === 'web')
       {
-        if(window.confirm(mensaje)){
+        if(window.confirm(`${titulo}\n\n${mensaje}`)){
         ejecutarLimpieza();
-      } return; //evitar que el cliente web pase de este punto
+      } 
+      return; //evitar que el cliente web pase de este punto
     }
           Alert.alert(  //solo para version movil expo GO
-            "Limpiar Reporte",
+            titulo,
             mensaje,
             [
               { text: "Cancelar", style: "cancel" },
-              { text: "Borrar", style: "destructive", onPress: ejecutarLimpieza}
+              { text: "🗑️ Si, Borrar", style: "destructive", onPress: ejecutarLimpieza}
             ]
           );
   };
