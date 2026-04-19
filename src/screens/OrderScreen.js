@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, Button, StyleSheet } from 'react-native';
+import { View, Text, FlatList, Button, StyleSheet, Image } from 'react-native';
 
 //importando la biblioteca AsyncStorage
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -64,8 +64,18 @@ export default function OrderScreen({navigation}) {
           keyExtractor = {(item) => item.id}
           renderItem = {({ item }) => (
             <View style = {styles.itemRow}>
-              <Text style = {styles.itemText}>{item.nombre} (x{item.cantidad})</Text>
-              <Text style = {styles.itemPrice}>${(item.precio * item.cantidad).toFixed(2)}</Text>
+              {/* ahora se muestra la imagen en el carrito */}
+              <Image source={{ uri: item.imagen }} style={styles.cartImage} />
+              <View style={styles.itemDetails}>
+                <Text style={styles.itemText}>{item.nombre}</Text>
+                <Text style={styles.itemSubtext}>Cantidad: {item.cantidad}</Text>
+              </View>
+
+              <View style={styles.priceContainer}>
+                <Text style={styles.itemPrice}>
+                  ${(item.precio * item.cantidad).toFixed(2)}
+                </Text>
+              </View>
             </View>
           )}
           ListEmptyComponent = {<Text style = {styles.empty}>Tu carrito está vacio</Text>}
@@ -93,18 +103,39 @@ export default function OrderScreen({navigation}) {
       backgroundColor: '#fff' 
     },
     itemRow: { 
-      flexDirection: 'row', 
-      justifyContent: 'space-between', 
-      paddingVertical: 10, 
+      flexDirection: 'row', // Alinea los elementos en fila
+      alignItems: 'center', 
+      paddingVertical: 12, 
       borderBottomWidth: 1, 
       borderColor: '#eee' 
     },
+    cartImage: {
+      width: 60, // Tamaño adecuado para el carrito
+      height: 60,
+      borderRadius: 8,
+      marginRight: 15,
+     backgroundColor: '#f9f9f9' // Fondo por si la imagen tarda en cargar
+    },
+    itemDetails: {
+      flex: 1, // Hace que esta sección ocupe el espacio central
+    },
     itemText: { 
-      fontSize: 16 
+      fontSize: 16,
+      fontWeight: '600',
+      color: '#333'
+    },
+    itemSubtext: {
+      fontSize: 14,
+      color: '#666',
+      marginTop: 2
+    },
+    priceContainer: {
+      marginLeft: 10,
     },
     itemPrice: { 
       fontSize: 16, 
-      fontWeight: 'bold' 
+      fontWeight: 'bold',
+      color: '#D32F2F'
     },
     footer: { 
       marginTop: 20, 
