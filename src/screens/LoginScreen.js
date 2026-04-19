@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert, Image, TouchableOpacity, Platform} from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Alert, Image, TouchableOpacity, Platform, ScrollView, KeyboardAvoidingView} from 'react-native';
 
 export default function LoginScreen({ navigation }) {
   const [user, setUser] = useState('');
@@ -27,28 +27,41 @@ export default function LoginScreen({ navigation }) {
   };
 
 return (
-    <View style={styles.container}>
-      <View style={styles.logoContainer}>
-        <Image 
-          source={{ uri: 'https://cdn.creativefabrica.com/2021/03/10/Food-Taco-Cloud-Style-Graphics-9428700-2-580x387.png' }} 
-          style={styles.logo} 
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={{ flex: 1 }}
+    >
+      <ScrollView 
+        contentContainerStyle={styles.container} 
+        bounces={false}
+        keyboardShouldPersistTaps="handled"
+      >
+        <View style={styles.logoContainer}>
+          <Image 
+            source={{ uri: 'https://cdn.creativefabrica.com/2021/03/10/Food-Taco-Cloud-Style-Graphics-9428700-2-580x387.png' }} 
+            style={styles.logo}
+          />
+          <Text style={styles.brandName}>TACO HEAVEN</Text>
+          <Text style={styles.tagline}>El paraíso del sabor</Text>
+        </View>
+        <TextInput 
+          placeholder="Usuario" 
+          onChangeText={setUser} 
+          style={styles.input}
         />
-        <Text style={styles.brandName}>TACO HEAVEN</Text>
-        <Text style={styles.tagline}>El paraíso del sabor</Text>
-      </View>
-      <TextInput 
-        placeholder="Usuario" 
-        onChangeText={setUser} 
-        style={styles.input} 
-      />
-      <TextInput 
-        placeholder="Contraseña" 
-        secureTextEntry={true} 
-        onChangeText={setPassword} 
-        style={styles.input} 
-      />
-      <Button title="Entrar" onPress={handleLogin} color="#D32F2F" />
-    </View>
+        <TextInput 
+          placeholder="Contraseña" 
+          secureTextEntry={true} 
+          onChangeText={setPassword} 
+          style={styles.input}
+        />
+        <Button 
+          title="Entrar" 
+          onPress={handleLogin} 
+          color="#D32F2F"
+        />
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 
