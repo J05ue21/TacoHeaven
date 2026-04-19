@@ -16,12 +16,13 @@ export default function LoginScreen({ navigation }) {
     } 
     else 
     {
-      const mensajeError = 'Usuario o contraseña incorrectos';
+      const titulo = '❌ Error de Acceso';
+      const mensajeError = 'Usuario o contraseña incorrectos.\nPor favor, verifica tus datos.';
       if (Platform.OS === 'web') {
-        alert(mensajeError);
+        window.alert(`${titulo}\n\n${mensajeError}`); //se muestras ambas variables, para personalizar el aviso 
       } 
       else {
-      Alert.alert('Error', mensajeError);
+      Alert.alert(titulo, mensajeError);
       }
     }
   };
