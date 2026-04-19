@@ -88,7 +88,7 @@ export default function OrderScreen({navigation}) {
             title="Confirmar Pedido" 
             onPress={finalizarCompra} 
             color="#4CAF50"
-            disabled={items.length === 0}
+            //disabled={items.length === 0}
           />
           </View>
         </View>
