@@ -47,36 +47,71 @@ export default function OrderScreen() {
   return (
     <View style={styles.container}>
       <FlatList 
-        data={items}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.item}>
-            <Text>{item.nombre} x{item.cantidad}</Text>
-            <Text>${(item.precio * item.cantidad).toFixed(2)}</Text>
+        data = {items}
+        keyExtractor = {(item) => item.id}
+        renderItem = {({ item }) => (
+          <View style = {styles.itemRow}>
+            <Text style = {styles.itemText}>{item.nombre} (x{item.cantidad})</Text>
+            <Text style = {styles.itemPrice}>${(item.precio * item.cantidad).toFixed(2)}</Text>
           </View>
         )}
+        ListEmptyComponent = {<Text style = {styles.empty}>Tu carrito está vacio</Text>}
         />
-      <Text style={styles.total}>Total: ${calcularTotal().toFixed(2)}</Text>
-      <Button title="Confirmar Pedido" onPress={finalizarCompra} color="#4CAF50" />
-    </View>
+
+        <View styles = {styles.footer}>
+          <Text style={styles.totalLabel}>Total a pagar:</Text>
+        <Text style={styles.totalAmount}>${calcularTotal().toFixed(2)}</Text>
+        <Button 
+          title="Confirmar Pedido" 
+          onPress={() => alert("¡Pedido realizado!")} 
+          color="#4CAF50"
+          disabled={items.length === 0}
+        />
+        </View>
+      </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: { 
     flex: 1, 
-    padding: 20 
+    padding: 20, 
+    backgroundColor: '#fff' 
   },
-  item: { 
-    flexDirection: 'row',
+  itemRow: { 
+    flexDirection: 'row', 
     justifyContent: 'space-between', 
-    padding: 10, 
-    borderBottomWidth: 1 
+    paddingVertical: 10, 
+    borderBottomWidth: 1, 
+    borderColor: '#eee' 
   },
-  total: { 
-    fontSize: 22, 
+  itemText: { 
+    fontSize: 16 
+  },
+  itemPrice: { 
+    fontSize: 16, 
+    fontWeight: 'bold' 
+  },
+  footer: { 
+    marginTop: 20, 
+    padding: 15, 
+    backgroundColor: '#f9f9f9', 
+    borderRadius: 10 
+  },
+  totalLabel: { 
+    fontSize: 18, 
+    color: '#666' 
+  },
+  totalAmount: { 
+    fontSize: 28, 
     fontWeight: 'bold', 
-    textAlign: 'right', 
-    marginVertical: 20 
+    color: '#D32F2F', 
+    marginBottom: 15 
+  },
+  empty: { 
+    textAlign: 'center', 
+    marginTop: 50, 
+    fontSize: 18, 
+    color: '#999' 
   }
 });
