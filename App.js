@@ -2,6 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
 
 // incluyendo las pantallas basicas de la app
 import LoginScreen from './src/screens/LoginScreen';
@@ -29,11 +30,50 @@ function MenuStackScreen(){
 //menu tipo tab (pestañas) mostrados tras pasar login
 function MainTabs(){
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false}}>
+    /*<Tab.Navigator screenOptions={{ headerShown: false}}>
       <Tab.Screen name="Menu" component={MenuStackScreen} options={{ title: 'Menu' }} />
       <Tab.Screen name="Orden" component={OrderScreen} options={{ title: 'Mi carrito' }} />
       <Tab.Screen name="Historial" component={HistoryScreen} options={{ title: 'Historial de Pedidos' }} />
-    </Tab.Navigator>
+    </Tab.Navigator>*/
+
+    <Tab.Navigator
+  screenOptions={({ route }) => ({
+    tabBarIcon: ({ focused, color, size }) => {
+      let iconName;
+
+      // iconos según la ruta
+      if (route.name === 'Menu') {
+        iconName = focused ? 'restaurant' : 'restaurant-outline';
+      } else if (route.name === 'Carrito') {
+        iconName = focused ? 'cart' : 'cart-outline';
+      } else if (route.name === 'Historial') {
+        iconName = focused ? 'clipboard' : 'clipboard-outline';
+      }
+
+      // Retorna el componente Ionicons con el nombre asignado
+      return <Ionicons name={iconName} size={size} color={color} />;
+    },
+    tabBarActiveTintColor: '#D32F2F',
+    tabBarInactiveTintColor: 'gray',
+    headerShown: true, 
+  })}
+>
+  <Tab.Screen 
+    name="Menu" 
+    component={MenuStackScreen} 
+    options={{ title: 'Nuestro Menú' }} 
+  />
+  <Tab.Screen 
+    name="Carrito" 
+    component={OrderScreen} 
+    options={{ title: 'Mi Carrito' }} 
+  />
+  <Tab.Screen 
+    name="Historial" 
+    component={HistoryScreen} 
+    options={{ title: 'Reporte de Compras' }} 
+  />
+</Tab.Navigator>
   );
 }
 
