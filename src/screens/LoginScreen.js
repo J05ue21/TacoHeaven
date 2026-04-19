@@ -30,7 +30,7 @@ return (
       />
       <TextInput 
         placeholder="Contraseña" 
-        secureTextEntry 
+        secureTextEntry={true} 
         onChangeText={setPassword} 
         style={styles.input} 
       />

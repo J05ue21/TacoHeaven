@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 export default function OrderScreen() {
   return (
     <View style={styles.container}>
-      <Text>Pantalla para mostrar la Orden</Text>
+      <Text>Pantalla para mostrar Orden</Text>
     </View>
   );
 }
