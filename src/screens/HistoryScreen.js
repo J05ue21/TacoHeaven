@@ -94,11 +94,12 @@ const ejecutarLimpieza = async () => {
 
   return (
     <View style={styles.container}>
+      
       <View style={styles.header}>
         <Text style={styles.title}>Reporte de Compras</Text>
         {historial.length > 0 && (
-          <TouchableOpacity onPress={borrarHistorial}>
-            <Text style={styles.clearText}>Limpiar</Text>
+          <TouchableOpacity style={styles.buttonClear} onPress={borrarHistorial}>
+            <Text style={styles.buttonClearText}>Limpiar Historial</Text>
           </TouchableOpacity>
         )}
       </View>
@@ -117,7 +118,12 @@ const ejecutarLimpieza = async () => {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#F4F4F9', padding: 15 },
+  container: { 
+    flex: 1,
+    backgroundColor: '#F4F4F9', 
+    padding: 15 
+  },
+
   header: { 
     flexDirection: 'row', 
     justifyContent: 'space-between', 
@@ -196,5 +202,20 @@ const styles = StyleSheet.create({
     marginTop: 50,
     color: '#999', 
     fontSize: 16
-  }
+  },
+  buttonClear: {
+    backgroundColor: '#D32F2F', 
+    paddingHorizontal: 15,
+    paddingVertical: 8,
+    borderRadius: 8,
+    elevation: 2, 
+    shadowColor: '#000', 
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+  },
+  buttonClearText: {
+    color: '#FFF',
+    fontWeight: 'bold',
+    fontSize: 14,
+  },
 });
