@@ -14,20 +14,29 @@ export default function DetailScreen({ route, navigation }) {
     const carritoActual = await AsyncStorage.getItem('carrito');
     let lista = carritoActual ? JSON.parse(carritoActual) : [];
 
-    //los detalles  del platillo elegido, se guardan en nuevoItem
-    const nuevoItem = {
-      id: Date.now().toString(),  //pasa el objeto Date a un valor String
-      nombre: producto.nombre,
-      precio: producto.precio,
-      cantidad: cantidad,
-      imagen: producto.imagen
-    };
-    lista.push(nuevoItem);
+      //para verificar si hay un articulo del mismo tipo, tomamos el nombre como identificador
+      const indiceYaExiste = lista.findIndex(item => item.nombre === producto.nombre);
+
+      if (indiceYaExiste !== -1) {
+      //si la condicion es True, ya existe un item del mismo tipo y simplemente se aumenta el contador
+      lista[indiceYaExiste].cantidad += cantidad;
+      } 
+      else
+      {  //como el item elegido es nuevo, los detalles  del platillo elegido, se guardan en un nuevoItem
+        const nuevoItem = {
+          id: Date.now().toString(),  //pasa el objeto Date a un valor String
+          nombre: producto.nombre,
+          precio: producto.precio,
+          cantidad: cantidad,
+          imagen: producto.imagen
+        };
+        lista.push(nuevoItem);
+      }
 
     // lista actualizada
     await AsyncStorage.setItem('carrito', JSON.stringify(lista));
     
-    //...........................................................................................
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     const titulo = '✅ ¡Producto añadido!';
     const mensaje = 'Tu orden se está actualizando...';
     if (Platform.OS === 'web') {
@@ -36,7 +45,8 @@ export default function DetailScreen({ route, navigation }) {
     else {
     Alert.alert(titulo, mensaje);
     }
-    //................................................................................
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*+
+    
     navigation.navigate('Orden'); // se salta a la pestaña Carrito
   } catch (e) {
     console.error("Hubo un problema al guardar", e);
