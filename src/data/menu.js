@@ -7,7 +7,7 @@ export const menu = [
   { id: '4', nombre: 'Burrito (30cm)', precio: 8.00, categoria: 'Comida', imagen: 'https://www.shutterstock.com/image-photo/mexican-beef-burrito-isolated-on-600nw-2646397505.jpg' },
   { id: '5', nombre: 'Pozole rojo', precio: 6.00, categoria: 'Comida', imagen: 'https://static.wixstatic.com/media/d6fe55_16179d1f19314cf2b8f9d2a892edf3de~mv2.png/v1/fill/w_568,h_568,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/d6fe55_16179d1f19314cf2b8f9d2a892edf3de~mv2.png' },
   { id: '6', nombre: 'Sopa de Tortilla (32 oz)', precio: 6.00, categoria: 'Comida', imagen: 'https://www.unileverfoodsolutions.com.mx/dam/global-ufs/mcos/NOLA/calcmenu/recipes/MX-recipes/general/sopa-de-tortilla/main-header.jpg' },
-  { id: '7', nombre: 'Torta Cubana', precio: 6.50, categoria: 'Comida', imagen: 'https://upload.wikimedia.org/wikipedia/commons/b/bb/Torta_Cubana.jpg' },
+  { id: '7', nombre: 'Torta Cubana', precio: 6.50, categoria: 'Comida', imagen: 'https://gourmetdemexico.com.mx/wp-content/uploads/2022/03/torta-cubana.jpg' },
   { id: '8', nombre: 'Lomo de Aguja a la Mexicana', precio: 8.75, categoria: 'Comida', imagen: 'https://www.tresjotas.com/wp-content/uploads/2020/12/Receta-Lomo-de-aguja-a-la-parrilla.jpg' },
   { id: '9', nombre: 'Nachos con Queso y Carne (orden XL)', precio: 7.25, categoria: 'Comida', imagen: 'https://www.cocinavital.mx/wp-content/uploads/2017/11/nachos-con-carne-molida.jpg' },
   { id: '10', nombre: 'Alambres de Res', precio: 7.00, categoria: 'Comida', imagen: 'https://editorialtelevisa.brightspotcdn.com/dims4/default/76f811b/2147483647/strip/true/crop/996x560+2+0/resize/1440x810!/quality/90/?url=https%3A%2F%2Fk2-prod-editorial-televisa.s3.us-east-1.amazonaws.com%2Fbrightspot%2Fwp-content%2Fuploads%2F2019%2F05%2FAlambre.jpg' },
