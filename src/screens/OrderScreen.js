@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, Button, StyleSheet, Image } from 'react-native';
+import { View, Text, FlatList, Button, StyleSheet, Image, Platform, Alert} from 'react-native';
 
 //importando la biblioteca AsyncStorage
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -44,8 +44,16 @@ export default function OrderScreen({navigation}) {
 
       setItems([]); //limpia los datos actuales del carrito
 
-      alert("¡Tu orden estará lista en unos minutos, gracias por preferir TacoHeaven!");
-      //navigation.navigate('Menu');
+      //...........................................................................................
+          const titulo = '🎉 ¡Pedido confirmado!';
+          const mensaje = '¡Tu orden estará lista en unos minutos\n Gracias por preferir 🌮TacoHeaven🌮!';
+          if (Platform.OS === 'web') {
+            window.alert(`${titulo}\n\n${mensaje}`);
+          } 
+          else {
+          Alert.alert(titulo, mensaje);
+          }
+          //................................................................................
       
       /* al cambiar de pantalla debe mostrarse el Menu con sl listado de platillos y bebidas*/
       navigation.navigate('Menu',{screen: 'ListaMenu'});
