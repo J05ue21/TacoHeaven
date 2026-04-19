@@ -4,7 +4,12 @@ import { View, Text, Image, Button, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function DetailScreen({ route, navigation }) {
+  const { producto } = route.params; // Recibimos el producto del menú
+  const [cantidad, setCantidad] = useState(1);
+
+  const agregarAlCarrito = async() => {
   try {
+    
     // ver que hay en el carrito
     const carritoActual = await AsyncStorage.getItem('carrito');
     let lista = carritoActual ? JSON.parse(carritoActual) : [];
@@ -46,6 +51,7 @@ export default function DetailScreen({ route, navigation }) {
       <Button title="Agregar a la Orden" onPress={agregarAlCarrito} color="#D32F2F" />
     </View>
   );
+}
 
 const styles = StyleSheet.create({
   container: { 
