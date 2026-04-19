@@ -13,8 +13,11 @@ export default function MenuScreen({navigation}) {
         <Image source={{ uri: item.imagen }} style={styles.image} />
       <View style={styles.info}>
         <Text style={styles.nombre}>{item.nombre}</Text>
+        <View style={styles.labelCategoria}>
+          <Text style={styles.categoriaText}>{item.categoria}</Text>
+        </View>
         <Text style={styles.precio}>${item.precio.toFixed(2)}</Text>
-        <Text style={styles.categoria}>{item.categoria}</Text>
+        
       </View>
     </TouchableOpacity>
   );
@@ -31,42 +34,53 @@ export default function MenuScreen({navigation}) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1, 
-    backgroundColor: '#f8f8f8' 
-},
-  list: { 
-    padding: 10 
-},
   card: { 
     flexDirection: 'row', 
     backgroundColor: '#fff', 
     marginBottom: 15, 
-    borderRadius: 10, 
+    borderRadius: 15, // Más redondeado
     overflow: 'hidden',
-    elevation: 3
+    elevation: 4, // Sombra en Android
+    shadowColor: '#000', // Sombra en iOS
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    marginHorizontal: 5,
   },
 
   image: { 
-    width: 100,
-    height: 100 
+    width: 110,
+    height: 110 
 },
   info: { 
-    padding: 10, 
+    padding: 12, 
+    flex: 1, 
     justifyContent: 'center' 
 },
   nombre: { 
     fontSize: 18, 
-    fontWeight: 'bold' 
+    fontWeight: 'bold', 
+    color: '#333' 
 },
-  precio: { 
-    fontSize: 16, 
-    color: '#D32F2F', 
-    marginVertical: 4 
-},
-  categoria: { 
+  labelCategoria: { // Pequeña etiqueta para la categoría
+    backgroundColor: '#FFFBEB',
+    alignSelf: 'flex-start',
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    borderRadius: 5,
+    marginTop: 4,
+    borderWidth: 1,
+    borderColor: '#FEF3C7'
+  },
+  categoriaText: {
     fontSize: 12,
-    color: '#666',
-    fontStyle: 'italic'
-}
+    color: '#B45309',
+    fontWeight: '600',
+    textTransform: 'uppercase'
+  },
+  precio: { 
+    fontSize: 18, 
+    fontWeight: 'bold', 
+    color: '#D32F2F', 
+    marginTop: 8 
+  },
 });
