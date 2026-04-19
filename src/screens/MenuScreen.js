@@ -34,6 +34,14 @@ export default function MenuScreen({navigation}) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f8f8f8',
+  },
+  list: {
+    padding: 15,
+    paddingBottom: 20,
+  },
   card: { 
     flexDirection: 'row', 
     backgroundColor: '#fff', 
