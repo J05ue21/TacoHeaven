@@ -40,7 +40,7 @@ function MainTabs(){
       // iconos según la ruta
       if (route.name === 'Menu') {
         iconName = focused ? 'restaurant' : 'restaurant-outline';
-      } else if (route.name === 'Carrito') {
+      } else if (route.name === 'Orden') {
         iconName = focused ? 'cart' : 'cart-outline';
       } else if (route.name === 'Historial') {
         iconName = focused ? 'clipboard' : 'clipboard-outline';
