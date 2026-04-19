@@ -5,7 +5,7 @@ import { View, Text, FlatList, Button, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useIsFocused } from '@react-navigation/native';
 
-export default function OrderScreen(navigation) {
+export default function OrderScreen({navigation}) {
     const [items, setItems] = useState([]);
     const isFocused = useIsFocused(); // actualizar al entrar a esta pestaña
 
@@ -44,8 +44,8 @@ export default function OrderScreen(navigation) {
 
       setItems([]); //limpia los datos actuales del carrito
 
-      alert("¡Gracias por preferir TacoHeaven!");
-      navigation.navigate('Historial');
+      alert("¡Tu orden estará lista en unos minutos, gracias por preferir TacoHeaven!");
+      navigation.navigate('Menu');
 
     }
     catch(error)
