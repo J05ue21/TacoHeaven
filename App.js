@@ -51,7 +51,7 @@ function MainTabs(){
     },
     tabBarActiveTintColor: '#D32F2F',
     tabBarInactiveTintColor: 'gray',
-    headerShown: true, 
+    headerShown: false, 
   })}
 >
   <Tab.Screen 
@@ -60,7 +60,7 @@ function MainTabs(){
     options={{ title: 'Nuestro Menú' }} 
   />
   <Tab.Screen 
-    name="Carrito" 
+    name="Orden" 
     component={OrderScreen} 
     options={{ title: 'Mi Carrito' }} 
   />
