@@ -29,9 +29,9 @@ export default function HistoryScreen() {
       {
         if(window.confirm(mensaje)){
         ejecutarLimpieza();
-      }
+      } return; //evitar que el cliente web pase de este punto
     }
-          Alert.alert(
+          Alert.alert(  //solo para version movil expo GO
             "Limpiar Reporte",
             mensaje,
             [
