@@ -34,7 +34,7 @@ export default function OrderScreen() {
         id: Date.now().toString(),
         fecha: new Date().toLocaleString(),
         total: items.reduce((acc, item) => acc + (item.precio * item.cantidad), 0),
-        productos: items
+        detalles: [...items]   //productos: items
       };
       
       // lo guarda en el historial (persistencia en AsyncStorage)
