@@ -45,7 +45,10 @@ export default function OrderScreen({navigation}) {
       setItems([]); //limpia los datos actuales del carrito
 
       alert("¡Tu orden estará lista en unos minutos, gracias por preferir TacoHeaven!");
-      navigation.navigate('Menu');
+      //navigation.navigate('Menu');
+      
+      /* al cambiar de pantalla debe mostrarse el Menu con sl listado de platillos y bebidas*/
+      navigation.navigate('Menu',{screen: 'ListaMenu'});
 
     }
     catch(error)
