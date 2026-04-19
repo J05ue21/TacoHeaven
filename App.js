@@ -21,7 +21,7 @@ function MenuStackScreen(){
     <MenuStack.Navigator>
       <Stack.Screen name="ListaMenu" component={MenuScreen} options={{ title: 'Menú TacoHeaven' }} />
       
-      <Stack.Screen name="Detalle" component={DetailScreen} options={{ title: 'Configurar Orden' }} />
+      <Stack.Screen name="Detalle" component={DetailScreen} options={{ title: 'Ajusta la orden' }} />
     </MenuStack.Navigator>
   );
 }
@@ -30,7 +30,7 @@ function MenuStackScreen(){
 function MainTabs(){
   return (
     <Tab.Navigator screenOptions={{ headerShown: false}}>
-      <Tab.Screen name="Menu" component={MenuStackScreen} options={{ title: 'Nuestro Menú' }} />
+      <Tab.Screen name="Menu" component={MenuStackScreen} options={{ title: 'Menu' }} />
       <Tab.Screen name="Orden" component={OrderScreen} options={{ title: 'Mi carrito' }} />
       <Tab.Screen name="Historial" component={HistoryScreen} options={{ title: 'Historial de Pedidos' }} />
     </Tab.Navigator>
