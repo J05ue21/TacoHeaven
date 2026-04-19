@@ -16,7 +16,7 @@ export default function DetailScreen({ route, navigation }) {
 
     //los detalles  del platillo elegido, se guardan en nuevoItem
     const nuevoItem = {
-      id: Date.now(),
+      id: Date.now().toString(),  //pasa el objeto Date a un valor String
       nombre: producto.nombre,
       precio: producto.precio,
       cantidad: cantidad,
@@ -30,7 +30,7 @@ export default function DetailScreen({ route, navigation }) {
     alert("¡Producto añadido!");
     navigation.navigate('Orden'); // se salta a la pestaña Carrito
   } catch (e) {
-    console.error(e);
+    console.error("Hubo un problema al guardar", e);
   }
 };
 
